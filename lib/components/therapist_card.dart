@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:therapize/components/themed_text.dart';
@@ -36,7 +37,7 @@ class TherapistCard extends StatelessWidget {
                     height: 80,
                     color: Colors.white,
                     width: 80,
-                    child: FlutterLogo(),
+                    child: drawImage(therapist.imagePath, context, 80, 80),
                   ),
                 ),
                 Container(
@@ -103,4 +104,62 @@ class TherapistCard extends StatelessWidget {
       ),
     );
   }
+}
+
+FutureBuilder drawImage(
+    String imageName, BuildContext context, double height, double width) {
+  return FutureBuilder(
+    future: FirebaseStorage.instance
+        .ref()
+        .child(imageName)
+        .getDownloadURL(),
+    builder: (
+      c,
+      s,
+    ) {
+      if (s.connectionState != ConnectionState.done) {
+        return Container(
+          color: Color(0xFFf8c630).withOpacity(.25),
+          height: height,
+        );
+      } else if (s.hasError) {
+        return Container(
+          color: Color(0xFFf8c630).withOpacity(.25),
+          height: height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Icon(Mdi.alertCircleOutline),
+              Text("Sorry, we can't fetch this image right now.",
+                  textAlign: TextAlign.center)
+            ],
+          ),
+        );
+      } else {
+        String downloadLink = s.data;
+        return Image.network(
+          downloadLink,
+          fit: BoxFit.fitWidth,
+          height: height,
+          width: width,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Column(children: <Widget>[
+              Container(
+                color: Color(0xFFf8c630).withOpacity(.25),
+                height: height,
+              ),
+              LinearProgressIndicator(
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes
+                    : null,
+              )
+            ]);
+          },
+        );
+      }
+    },
+  );
 }
