@@ -73,7 +73,7 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
                               name: document['name'],
                               imagePath: document['imagePath'],
                               path: document['path'],
-                              rate: document['rate'],
+                              rate: document['rate'].toDouble(),
                               rating: document['rating'].toDouble(),
                               type: document['type']);
 
