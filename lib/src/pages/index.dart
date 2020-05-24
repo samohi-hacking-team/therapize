@@ -97,8 +97,8 @@ class IndexState extends State<IndexPage> {
 
   Future<void> _handleCameraAndMic() async {
     await [
-      Permission.location,
-      Permission.storage,
+      Permission.camera,
+      Permission.microphone,
     ].request();
   }
 }
