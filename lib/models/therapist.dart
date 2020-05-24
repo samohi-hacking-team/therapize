@@ -24,7 +24,7 @@ class Therapist {
 
   final String imagePath;
 
-  final double price;
+  final double rate;
 
   Therapist({
     @required this.path,
@@ -34,6 +34,6 @@ class Therapist {
     @required this.header,
     @required this.description,
     @required this.imagePath,
-    @required this.price,
+    @required this.rate,
   });
 }

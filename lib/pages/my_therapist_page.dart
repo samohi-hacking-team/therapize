@@ -67,15 +67,15 @@ class MyTherapistsPage extends StatelessWidget {
                           DocumentSnapshot documentSnapshot = s.data;
 
                           Therapist therapist = new Therapist(
-                              name: documentSnapshot.data['name'],
-                              rating:
-                                  documentSnapshot.data['rating'].toDouble(),
-                              type: documentSnapshot.data['type'],
-                              path: documentSnapshot.data['path'],
-                              header: documentSnapshot.data['header'],
-                              description: documentSnapshot.data['description'],
-                              imagePath: documentSnapshot.data['imagePath'],
-                              price: documentSnapshot.data['price']);
+                            name: documentSnapshot.data['name'],
+                            rating: documentSnapshot.data['rating'].toDouble(),
+                            type: documentSnapshot.data['type'],
+                            path: documentSnapshot.data['path'],
+                            header: documentSnapshot.data['header'],
+                            description: documentSnapshot.data['description'],
+                            imagePath: documentSnapshot.data['imagePath'],
+                            rate: documentSnapshot.data['rate'].toDouble(),
+                          );
 
                           return TherapistCard(
                             therapist: therapist,
