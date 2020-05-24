@@ -13,7 +13,7 @@ import 'package:therapize/global/colors.dart';
 import 'package:therapize/models/therapist.dart';
 
 import '../components/platform_widgets/platform_page_route.dart';
-import '../src/pages/call.dart';
+import '../agoraSDK/pages/call.dart';
 
 class TherapistPage extends StatefulWidget {
   final Therapist therapist;

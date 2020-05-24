@@ -51,9 +51,6 @@ exports.buySessionsForLater = functions.https.onRequest(
 exports.notifyTherapist = functions.https.onRequest((request, response) => {
   let path = request.body["path"];
   let id = Date.now().toString();
-  admin.firestore().doc(path).collection("requests").add({
-    connectionID: id,
-    
-  });
+  admin.firestore().doc(path).collection("requests").doc(id).create({});
   response.status(200).send(id);
 });
