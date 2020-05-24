@@ -23,11 +23,15 @@ class _TherapistPageState extends State<TherapistPage> {
   TextEditingController textEditingController;
 
   PanelController controller;
+
+  int amount;
+
   @override
   void initState() {
     super.initState();
     this.controller = new PanelController();
-    this.textEditingController = new TextEditingController();
+    this.textEditingController = new TextEditingController(text: "1");
+    amount = int.parse(this.textEditingController.text);
   }
 
   @override
@@ -86,7 +90,7 @@ class _TherapistPageState extends State<TherapistPage> {
                       textType: TextType.header,
                     ),
                     ThemedText(
-                      widget.therapist.rate.toString(),
+                      "\$"+(widget.therapist.rate / 100).toStringAsFixed(2),
                     ),
                   ],
                 ),
@@ -106,6 +110,13 @@ class _TherapistPageState extends State<TherapistPage> {
                       child: Material(
                         type: MaterialType.transparency,
                         child: TextField(
+                          onChanged: (v) {
+                            setState(() {
+                              this.amount = int.tryParse(v) ?? 1;
+                            });
+                          },
+                          controller: this.textEditingController,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: MediaQuery.of(context).platformBrightness ==
                                     Brightness.light
@@ -126,6 +137,37 @@ class _TherapistPageState extends State<TherapistPage> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ThemedText(
+                      "Cost",
+                      textType: TextType.header,
+                    ),
+                    ThemedText(
+                      "\$"+(this.amount * widget.therapist.rate/100).toStringAsFixed(2),
+                    ),
+                  ],
+                ),
+              ),
+              Container(height: 10),
+              Expanded(child: Container(),),
+              Container(
+                width: MediaQuery.of(context).size.width-40,
+                height: 60,
+                
+                child: FlatButton(
+                  child: ThemedText("Purchase Now"),
+                  
+                  color: AppTheme.baseColor,
+                  onPressed: (){
+                    print("pressed");
+                  },
+                ),
+              ),
+              Container(height: 20),
             ],
           ),
         ),
