@@ -1,8 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
 import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
 import 'package:therapize/components/themed_text.dart';
+import 'package:therapize/global/colors.dart';
 import 'package:therapize/models/therapist.dart';
 
 class TherapistPage extends StatefulWidget {
@@ -23,9 +28,31 @@ class _TherapistPageState extends State<TherapistPage> {
       body: ListView(
         children: [
           Container(
-            color: Colors.black,
             height: 240,
             width: MediaQuery.of(context).size.width,
+            child: FutureBuilder<Uint8List>(
+              future: FirebaseStorage()
+                  .ref()
+                  .child(widget.therapist.imagePath)
+                  .getData(100000000),
+              builder: (c, s) {
+                if (s.connectionState != ConnectionState.done && !s.hasData) {
+                  return Container(
+                    color: AppTheme.baseColor,
+                    child: Center(
+                      child: Platform.isIOS
+                          ? CupertinoActivityIndicator()
+                          : CircularProgressIndicator(),
+                    ),
+                  );
+                } else {
+                  return Image.memory(
+                    s.data,
+                    fit: BoxFit.fitWidth,
+                  );
+                }
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(

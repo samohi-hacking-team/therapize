@@ -8,20 +8,16 @@ class PlatformSliverAppBar extends PlatformWidget {
   PlatformSliverAppBar({
     Key key,
     @required this.title,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return PlatformWidget(
-      iOS: CupertinoSliverNavigationBar(
-        largeTitle: Text(
-          this.title,
-        ),
-      ),
-      android: SliverAppBar(
-        title: Text(
-          this.title,
-        ),
-      ),
-    );
-  }
+  }) : super(
+          iOS: CupertinoSliverNavigationBar(
+            largeTitle: Text(
+              title,
+            ),
+          ),
+          android: SliverAppBar(
+            title: Text(
+              title,
+            ),
+          ),
+        );
 }
