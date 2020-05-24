@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
 import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
@@ -169,9 +170,15 @@ class _TherapistPageState extends State<TherapistPage> {
                   shape: StadiumBorder(),
                   child: ThemedText("Call now!"),
                   color: AppTheme.baseColor,
-                  onPressed: () {
+                  onPressed: () async {
                     print("PATHHH");
                     print(widget.therapist.path);
+
+                    await [
+                      Permission.camera,
+                      Permission.microphone,
+                    ].request();
+
                     post(
                         "https://us-central1-therapistconnector.cloudfunctions.net/notifyTherapist",
                         body: {

@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +18,13 @@ class EnterID extends StatelessWidget {
             labelText: "ENTER YOUR ID",
             hintText: "cl6Tn2DILFerddPKOH2k",
           ),
-          onSubmitted: (v) {
+          onSubmitted: (v) async {
             if (v.length == 20) {
+              await [
+                Permission.camera,
+                Permission.microphone,
+              ].request();
+
               Navigator.of(context).push(MaterialPageRoute(builder: (c) {
                 return LoggedIn(
                   id: v,
@@ -86,7 +94,7 @@ class _LoggedInState extends State<LoggedIn> {
       );
     } else {
       setState(() {
-        checks = checks+1;
+        checks = checks + 1;
       });
       checkForCallsConstantly();
     }
