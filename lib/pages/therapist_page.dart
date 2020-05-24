@@ -58,8 +58,16 @@ class _TherapistPageState extends State<TherapistPage> {
             padding: const EdgeInsets.all(
               12.0,
             ),
-            child: ThemedText(
-              widget.therapist.description,
+            child: Column(
+              children: <Widget>[
+                ThemedText(
+                  widget.therapist.header,
+                ),
+                SizedBox(height: 10,),
+                ThemedText(
+                  widget.therapist.description,
+                ),
+              ],
             ),
           ),
         ],

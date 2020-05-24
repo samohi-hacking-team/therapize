@@ -39,6 +39,7 @@ class OtherTherapistsPage extends StatelessWidget {
                 itemBuilder: (c, i) {
                   DocumentSnapshot document = documents[i];
                   Therapist therapist = new Therapist(
+                      header: document['header'],
                       description: document['description'],
                       name: document['name'],
                       imagePath: document['imagePath'],

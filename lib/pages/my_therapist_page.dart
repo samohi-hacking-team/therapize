@@ -72,6 +72,7 @@ class MyTherapistsPage extends StatelessWidget {
                                   documentSnapshot.data['rating'].toDouble(),
                               type: documentSnapshot.data['type'],
                               path: documentSnapshot.data['path'],
+                              header: documentSnapshot.data['header'],
                               description: documentSnapshot.data['description'],
                               imagePath: documentSnapshot.data['imagePath'],
                               price: documentSnapshot.data['price']);
