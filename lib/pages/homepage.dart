@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:therapize/components/homepage/my_therapists.dart';
+import 'package:therapize/components/homepage/search_therapists.dart';
 import 'package:therapize/components/platform_widgets/platform_sliver_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
           delegate: SliverChildListDelegate.fixed(
             [
               MyTherapists(),
+              SearchTherapists(),
             ],
           ),
         ),

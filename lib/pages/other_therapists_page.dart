@@ -10,7 +10,7 @@ class OtherTherapistsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        title: "Other Therapists",
+        title: "Search Therapists",
       ),
       body: FutureBuilder<QuerySnapshot>(
         future: Firestore.instance.collection('therapists').getDocuments(),

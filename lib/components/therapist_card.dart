@@ -109,7 +109,7 @@ class TherapistCard extends StatelessWidget {
 FutureBuilder drawImage(
     String imageName, BuildContext context, double height, double width) {
   return FutureBuilder(
-    future: FirebaseStorage.instance
+    future: FirebaseStorage .instance
         .ref()
         .child(imageName)
         .getDownloadURL(),
