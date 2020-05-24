@@ -106,6 +106,7 @@ class MyTherapists extends StatelessWidget {
                                           .toDouble(),
                                       type: documentSnapshot.data['type'],
                                       path: documentSnapshot.data['path'],
+                                      header: documentSnapshot.data['header'],
                                       description:
                                           documentSnapshot.data['description'],
                                       imagePath:

@@ -20,6 +20,8 @@ class Therapist {
 
   final String description;
 
+  final String header;
+
   final String imagePath;
 
   final double price;
@@ -29,6 +31,7 @@ class Therapist {
     @required this.name,
     @required this.type,
     @required this.rating,
+    @required this.header,
     @required this.description,
     @required this.imagePath,
     @required this.price,

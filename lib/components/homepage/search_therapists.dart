@@ -68,6 +68,7 @@ class SearchTherapists extends StatelessWidget {
                     children: List.generate(documents.length, (index) {
                       DocumentSnapshot document = documents[index];
                       Therapist therapist = new Therapist(
+                        header: document['header'],
                         description: document['description'],
                         name: document['name'],
                         imagePath: document['imagePath'],
