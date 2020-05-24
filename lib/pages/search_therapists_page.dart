@@ -26,16 +26,17 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width * .9,
-              child: TextField(
-                onChanged: (v) {
-                  setState(() {
-                    output = v;
-                  });
-                },
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Search',
+                hintText: 'Therapist Name',
               ),
-            )
+              onChanged: (v) {
+                setState(() {
+                  output = v;
+                });
+              },
+            ),
           ],
         ),
       ),
