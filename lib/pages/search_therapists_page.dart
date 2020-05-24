@@ -6,6 +6,7 @@ import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
 import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
 import 'package:therapize/components/platform_widgets/platform_text_field.dart';
 import 'package:therapize/components/therapist_card.dart';
+import 'package:therapize/global/colors.dart';
 import 'package:therapize/models/therapist.dart';
 
 class SearchTherapistsPage extends StatefulWidget {
@@ -32,16 +33,36 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            if(Platform.isIOS)
-               Container(height: 50),
-            PlatformTextField(
-              onChanged: (v) {
-                setState(() {
-                  searching = v;
-                });
-              },
-              labelText: 'Search',
-              hintText: 'Search Therapists',
+            if (Platform.isIOS) Container(height: 90),
+            Material(
+              type: MaterialType.transparency,
+              child: TextField(
+                style: TextStyle(
+                    color: MediaQuery.of(context).platformBrightness ==
+                            Brightness.light
+                        ? Colors.black
+                        : Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Search",
+                  hintText: "Search",
+                  labelStyle: TextStyle(
+                    color: MediaQuery.of(context).platformBrightness ==
+                            Brightness.light
+                        ? Colors.grey[900]
+                        : Colors.grey[300],
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppTheme.baseColor,
+                    ),
+                  ),
+                ),
+                onChanged: (v) {
+                  setState(() {
+                    searching = v;
+                  });
+                },
+              ),
             ),
             FutureBuilder(
               future:
@@ -64,34 +85,50 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
                   QuerySnapshot snapshot = s.data;
                   List documents = snapshot.documents;
 
-                  return Expanded(
-                    child: ListView.builder(
-                        padding: const EdgeInsets.only(top: 30),
-                        scrollDirection: Axis.vertical,
-                        itemCount: documents.length,
-                        itemBuilder: (c, i) {
-                          DocumentSnapshot document = documents[i];
-                          Therapist therapist = new Therapist(
-                              header: document['header'],
-                              description: document['description'],
-                              name: document['name'],
-                              imagePath: document['imagePath'],
-                              path: document['path'],
-                              rate: document['rate'].toDouble(),
-                              rating: document['rating'].toDouble(),
-                              type: document['type']);
-
-                          return TherapistCard(
-                            therapist: therapist,
-                          );
-                        }),
-                  );
+                  return Search(documents: documents, searchString: this.searching,);
                 }
               },
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class Search extends StatelessWidget {
+  const Search({
+    Key key,
+    @required this.documents,
+    this.searchString
+  }) : super(key: key);
+
+  final List documents;
+  final String searchString;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+          padding: const EdgeInsets.only(top: 30),
+          scrollDirection: Axis.vertical,
+          itemCount: documents.length,
+          itemBuilder: (c, i) {
+            DocumentSnapshot document = documents[i];
+            Therapist therapist = new Therapist(
+                header: document['header'],
+                description: document['description'],
+                name: document['name'],
+                imagePath: document['imagePath'],
+                path: document['path'],
+                rate: document['rate'].toDouble(),
+                rating: document['rating'].toDouble(),
+                type: document['type']);
+
+            return therapist.name.toLowerCase().contains(this.searchString)?TherapistCard(
+              therapist: therapist,
+            ):Container();
+          }),
     );
   }
 }

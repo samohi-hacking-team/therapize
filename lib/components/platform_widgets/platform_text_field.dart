@@ -7,23 +7,27 @@ class PlatformTextField extends PlatformWidget {
   final String labelText;
   final String hintText;
 
-  PlatformTextField(
-    {
-      this.onChanged,
-      this.labelText,
-      this.hintText,
-    }
-  ) : super(
-          iOS: CupertinoTextField(
-            onChanged: onChanged ?? (v) {},
-            
-          ),
-          android: TextField(
+  PlatformTextField({
+    this.onChanged,
+    this.labelText,
+    this.hintText,
+  }) : super(
+          iOS: Material(
+            type: MaterialType.transparency,
+                      child: TextField(
               decoration: InputDecoration(
                 labelText: labelText,
                 hintText: hintText,
               ),
               onChanged: onChanged,
             ),
+          ),
+          android: TextField(
+            decoration: InputDecoration(
+              labelText: labelText,
+              hintText: hintText,
+            ),
+            onChanged: onChanged,
+          ),
         );
 }
