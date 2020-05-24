@@ -85,7 +85,10 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
                   QuerySnapshot snapshot = s.data;
                   List documents = snapshot.documents;
 
-                  return Search(documents: documents, searchString: this.searching,);
+                  return Search(
+                    documents: documents,
+                    searchString: this.searching,
+                  );
                 }
               },
             ),
@@ -97,11 +100,8 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
 }
 
 class Search extends StatelessWidget {
-  const Search({
-    Key key,
-    @required this.documents,
-    this.searchString
-  }) : super(key: key);
+  const Search({Key key, @required this.documents, this.searchString})
+      : super(key: key);
 
   final List documents;
   final String searchString;
@@ -120,14 +120,21 @@ class Search extends StatelessWidget {
                 description: document['description'],
                 name: document['name'],
                 imagePath: document['imagePath'],
-                path: document['path'],
+                path: document.reference.path,
                 rate: document['rate'].toDouble(),
                 rating: document['rating'].toDouble(),
                 type: document['type']);
 
-            return therapist.name.toLowerCase().contains(this.searchString.toLowerCase()) || therapist.type.toLowerCase().contains(this.searchString.toLowerCase())?TherapistCard(
-              therapist: therapist,
-            ):Container();
+            return therapist.name
+                        .toLowerCase()
+                        .contains(this.searchString.toLowerCase()) ||
+                    therapist.type
+                        .toLowerCase()
+                        .contains(this.searchString.toLowerCase())
+                ? TherapistCard(
+                    therapist: therapist,
+                  )
+                : Container();
           }),
     );
   }

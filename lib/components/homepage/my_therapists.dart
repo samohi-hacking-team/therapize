@@ -104,7 +104,7 @@ class MyTherapists extends StatelessWidget {
                                     rating: documentSnapshot.data['rating']
                                         .toDouble(),
                                     type: documentSnapshot.data['type'],
-                                    path: documentSnapshot.data['path'],
+                                    path: documentSnapshot.reference.path,
                                     header: documentSnapshot.data['header'],
                                     description:
                                         documentSnapshot.data['description'],
@@ -112,6 +112,7 @@ class MyTherapists extends StatelessWidget {
                                         documentSnapshot.data['imagePath'],
                                     rate: documentSnapshot.data['rate']
                                         .toDouble(),
+                                      
                                   );
 
                                   return documents.length == 1

@@ -72,7 +72,7 @@ class SearchTherapists extends StatelessWidget {
                         description: document['description'],
                         name: document['name'],
                         imagePath: document['imagePath'],
-                        path: document['path'],
+                                    path: document.reference.path,
                         rate: document['rate'].toDouble(),
                         rating: document['rating'].toDouble(),
                         type: document['type'],

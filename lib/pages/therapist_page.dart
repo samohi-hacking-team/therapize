@@ -4,12 +4,16 @@ import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
 import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
 import 'package:therapize/components/themed_text.dart';
 import 'package:therapize/global/colors.dart';
 import 'package:therapize/models/therapist.dart';
+
+import '../components/platform_widgets/platform_page_route.dart';
+import '../src/pages/call.dart';
 
 class TherapistPage extends StatefulWidget {
   final Therapist therapist;
@@ -47,7 +51,7 @@ class _TherapistPageState extends State<TherapistPage> {
         child: InkWell(
           child: Center(
             child: ThemedText(
-              "Buy Sessions",
+              "Call Now",
               textType: TextType.header,
             ),
           ),
@@ -74,7 +78,7 @@ class _TherapistPageState extends State<TherapistPage> {
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
                     child: ThemedText(
-                      "Get Sessions",
+                      "Call Now",
                       textType: TextType.header,
                     ),
                   ),
@@ -163,10 +167,19 @@ class _TherapistPageState extends State<TherapistPage> {
                 height: 60,
                 child: FlatButton(
                   shape: StadiumBorder(),
-                  child: ThemedText("Purchase lesson now"),
+                  child: ThemedText("Call now!"),
                   color: AppTheme.baseColor,
                   onPressed: () {
-                    print("pressed");
+                    print(widget.therapist.path);
+                    post("https://us-central1-therapistconnector.cloudfunctions.net/notifyTherapist", body: {
+                      "path":widget.therapist.path
+                    }).then((value) => Navigator.of(context).push(
+                      platformPageRoute(
+                        CallPage(
+                          channelName: value.body,
+                        )
+                      )
+                    ));
                   },
                 ),
               ),
@@ -176,11 +189,9 @@ class _TherapistPageState extends State<TherapistPage> {
                 height: 60,
                 child: FlatButton(
                   shape: StadiumBorder(),
-                  child: ThemedText("Purchase for later"),
+                  child: ThemedText("Purchase now -- Coming soon"),
                   color: AppTheme.baseColor.withOpacity(.6),
-                  onPressed: () {
-                    print("pressed");
-                  },
+                  onPressed: null,
                 ),
               ),
               Container(height: 30),
