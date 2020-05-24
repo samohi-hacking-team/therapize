@@ -116,14 +116,16 @@ class Search extends StatelessWidget {
           itemBuilder: (c, i) {
             DocumentSnapshot document = documents[i];
             Therapist therapist = new Therapist(
-                header: document['header'],
-                description: document['description'],
-                name: document['name'],
-                imagePath: document['imagePath'],
-                path: document.reference.path,
-                rate: document['rate'].toDouble(),
-                rating: document['rating'].toDouble(),
-                type: document['type']);
+              header: document['header'],
+              description: document['description'],
+              name: document['name'],
+              imagePath: document['imagePath'],
+              path: document.reference.path,
+              rate: document['rate'].toDouble(),
+              rating: document['rating'].toDouble(),
+              type: document['type'],
+              available: document['available'],
+            );
 
             return therapist.name
                         .toLowerCase()
