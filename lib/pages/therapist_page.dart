@@ -171,15 +171,14 @@ class _TherapistPageState extends State<TherapistPage> {
                   color: AppTheme.baseColor,
                   onPressed: () {
                     print(widget.therapist.path);
-                    post("https://us-central1-therapistconnector.cloudfunctions.net/notifyTherapist", body: {
-                      "path":widget.therapist.path
-                    }).then((value) => Navigator.of(context).push(
-                      platformPageRoute(
-                        CallPage(
-                          channelName: value.body,
-                        )
-                      )
-                    ));
+                    post(
+                        "https://us-central1-therapistconnector.cloudfunctions.net/notifyTherapist",
+                        body: {
+                          "path": widget.therapist.path.toString(),
+                        }).then((value) =>
+                        Navigator.of(context).push(platformPageRoute(CallPage(
+                          channelName: value.body.toString(),
+                        ))));
                   },
                 ),
               ),
@@ -191,6 +190,7 @@ class _TherapistPageState extends State<TherapistPage> {
                   shape: StadiumBorder(),
                   child: ThemedText("Purchase now -- Coming soon"),
                   color: AppTheme.baseColor.withOpacity(.6),
+                  disabledColor: AppTheme.baseColor.withOpacity(.6),
                   onPressed: null,
                 ),
               ),
