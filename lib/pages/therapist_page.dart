@@ -47,7 +47,7 @@ class _TherapistPageState extends State<TherapistPage> {
         child: InkWell(
           child: Center(
             child: ThemedText(
-              "Get Sessions",
+              "Buy Sessions",
               textType: TextType.header,
             ),
           ),
@@ -90,7 +90,7 @@ class _TherapistPageState extends State<TherapistPage> {
                       textType: TextType.header,
                     ),
                     ThemedText(
-                      "\$"+(widget.therapist.rate / 100).toStringAsFixed(2),
+                      "\$" + (widget.therapist.rate / 100).toStringAsFixed(2),
                     ),
                   ],
                 ),
@@ -147,27 +147,43 @@ class _TherapistPageState extends State<TherapistPage> {
                       textType: TextType.header,
                     ),
                     ThemedText(
-                      "\$"+(this.amount * widget.therapist.rate/100).toStringAsFixed(2),
+                      "\$" +
+                          (this.amount * widget.therapist.rate / 100)
+                              .toStringAsFixed(2),
                     ),
                   ],
                 ),
               ),
               Container(height: 10),
-              Expanded(child: Container(),),
+              Expanded(
+                child: Container(),
+              ),
               Container(
-                width: MediaQuery.of(context).size.width-40,
+                width: MediaQuery.of(context).size.width - 40,
                 height: 60,
-                
                 child: FlatButton(
-                  child: ThemedText("Purchase Now"),
-                  
+                  shape: StadiumBorder(),
+                  child: ThemedText("Purchase lesson now"),
                   color: AppTheme.baseColor,
-                  onPressed: (){
+                  onPressed: () {
                     print("pressed");
                   },
                 ),
               ),
               Container(height: 20),
+              Container(
+                width: MediaQuery.of(context).size.width - 40,
+                height: 60,
+                child: FlatButton(
+                  shape: StadiumBorder(),
+                  child: ThemedText("Purchase for later"),
+                  color: AppTheme.baseColor.withOpacity(.6),
+                  onPressed: () {
+                    print("pressed");
+                  },
+                ),
+              ),
+              Container(height: 30),
             ],
           ),
         ),

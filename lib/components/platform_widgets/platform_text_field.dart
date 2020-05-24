@@ -16,6 +16,7 @@ class PlatformTextField extends PlatformWidget {
   ) : super(
           iOS: CupertinoTextField(
             onChanged: onChanged ?? (v) {},
+            
           ),
           android: TextField(
               decoration: InputDecoration(

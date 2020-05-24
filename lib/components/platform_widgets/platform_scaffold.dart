@@ -7,18 +7,13 @@ class PlatformScaffold extends PlatformWidget {
   final Widget body;
   final PlatformAppBar appBar;
 
-  PlatformScaffold({@required this.body, this.appBar});
-  @override
-  Widget build(BuildContext context) {
-    return PlatformWidget(
-      iOS: CupertinoPageScaffold(
-        child: this.body,
-        navigationBar: this.appBar.iOS,
+  PlatformScaffold({@required this.body, this.appBar}): super(iOS: CupertinoPageScaffold(
+        child: body,
+        navigationBar:appBar.iOS,
       ),
       android: Scaffold(
-        body: this.body,
-        appBar: this.appBar.android,
-      ),
-    );
-  }
+        body: body,
+        appBar: appBar.android,
+      ),);
+ 
 }

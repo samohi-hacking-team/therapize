@@ -15,22 +15,17 @@ class PlatformApp extends PlatformWidget {
     @required this.materialLightTheme, 
     @required this.materialDarkTheme, 
     @required this.cupertinoTheme,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return PlatformWidget(
-      iOS: CupertinoApp(
-        title: this.title,
-        home: this.home,
-        theme: this.cupertinoTheme,
+  }): super(iOS: CupertinoApp(
+        title: title,
+        home: home,
+        theme: cupertinoTheme,
       ),
       android: MaterialApp(
-        title: this.title,
-        home: this.home,
-        theme: this.materialLightTheme,
-        darkTheme: this.materialDarkTheme,
-      ),
-    );
-  }
+        title: title,
+        home: home,
+        theme: materialLightTheme,
+        darkTheme: materialDarkTheme,
+      ),);
+
+  
 }

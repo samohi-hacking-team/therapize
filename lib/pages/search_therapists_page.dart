@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
@@ -30,6 +32,8 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+            if(Platform.isIOS)
+               Container(height: 50),
             PlatformTextField(
               onChanged: (v) {
                 setState(() {
@@ -73,7 +77,7 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
                               name: document['name'],
                               imagePath: document['imagePath'],
                               path: document['path'],
-                              rate: document['rate'],
+                              rate: document['rate'].toDouble(),
                               rating: document['rating'].toDouble(),
                               type: document['type']);
 
