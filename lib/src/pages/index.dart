@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
+import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
 import './call.dart';
 
 class IndexPage extends StatefulWidget {
@@ -25,10 +27,13 @@ class IndexState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Agora Flutter QuickStart'),
+    return PlatformScaffold(
+      appBar: PlatformAppBar(
+        title: "Call",
       ),
+      // appBar: PlatformAppBar(
+      //   title: ('Agora Flutter QuickStart'),
+      // ),
       body: Center(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -38,17 +43,19 @@ class IndexState extends State<IndexPage> {
               Row(
                 children: <Widget>[
                   Expanded(
-                      child: TextField(
+                      child: Material(
+                                              child: TextField(
                     controller: _channelController,
                     decoration: InputDecoration(
-                      errorText:
-                          _validateError ? 'Channel name is mandatory' : null,
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(width: 1),
-                      ),
-                      hintText: 'Channel name',
+                        errorText:
+                            _validateError ? 'Channel name is mandatory' : null,
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                        ),
+                        hintText: 'Channel name',
                     ),
-                  ))
+                  ),
+                      ))
                 ],
               ),
               Padding(

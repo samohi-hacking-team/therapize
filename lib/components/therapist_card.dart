@@ -124,14 +124,15 @@ FutureBuilder drawImage(String imageName, BuildContext context) {
           color: AppTheme.baseColor,
         );
       } else if (s.hasError) {
+        print("EOROROROROROROROROROROR");
+        print(s.error);
         return Container(
           color: AppTheme.baseColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              ThemedText(
                 "Sorry, we can't fetch this image right now.",
-                textAlign: TextAlign.center,
               )
             ],
           ),

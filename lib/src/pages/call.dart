@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
+import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
+import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
 import '../utils/settings.dart';
 
 class CallPage extends StatefulWidget {
@@ -65,6 +67,8 @@ class _CallPageState extends State<CallPage> {
   void _addAgoraEventHandlers() {
     AgoraRtcEngine.onError = (dynamic code) {
       setState(() {
+        print("EROROROROROROR");
+        
         final info = 'onError: $code';
         _infoStrings.add(info);
       });
@@ -295,11 +299,10 @@ class _CallPageState extends State<CallPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Agora Flutter QuickStart'),
+    return PlatformScaffold(
+      appBar: PlatformAppBar(
+        title: "AppBar",
       ),
-      backgroundColor: Colors.black,
       body: Center(
         child: Stack(
           children: <Widget>[
