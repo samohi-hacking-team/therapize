@@ -26,6 +26,8 @@ class Therapist {
 
   final double rate;
 
+  final bool available;
+
   Therapist({
     @required this.path,
     @required this.name,
@@ -35,5 +37,6 @@ class Therapist {
     @required this.description,
     @required this.imagePath,
     @required this.rate,
+    @required this.available,
   });
 }
