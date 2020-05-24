@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +31,8 @@ class MyTherapists extends StatelessWidget {
               Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  onTap: () =>Navigator.of(context).push(
-                    platformPageRoute(MyTherapistsPage())
-                  ),
+                  onTap: () => Navigator.of(context)
+                      .push(platformPageRoute(MyTherapistsPage())),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ThemedText(
@@ -100,12 +98,13 @@ class MyTherapists extends StatelessWidget {
 
                               Therapist therapist = new Therapist(
                                   name: documentSnapshot.data['name'],
-                                  rating: documentSnapshot.data['rating'].toDouble(),
+                                  rating: documentSnapshot.data['rating']
+                                      .toDouble(),
                                   type: documentSnapshot.data['type'],
                                   path: documentSnapshot.data['path'],
                                   description:
-                                      documentSnapshot.data['description'], 
-                                  imagePath: documentSnapshot.data['imagePath'], 
+                                      documentSnapshot.data['description'],
+                                  imagePath: documentSnapshot.data['imagePath'],
                                   price: null);
 
                               return TherapistCard(
