@@ -75,10 +75,12 @@ class _LoggedInState extends State<LoggedIn> {
         .collection('requests')
         .getDocuments();
     if (snapshots.documents.isNotEmpty) {
+      String documentID = snapshots.documents.first.reference.documentID;
+      snapshots.documents.first.reference.delete();
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (c) => CallPage(
-            channelName: snapshots.documents.first.documentID,
+            channelName: documentID,
           ),
         ),
       );
