@@ -9,7 +9,7 @@ class PlatformScaffold extends PlatformWidget {
 
   PlatformScaffold({@required this.body, this.appBar}): super(iOS: CupertinoPageScaffold(
         child: body,
-        navigationBar:appBar.iOS,
+        navigationBar: appBar.iOS,
       ),
       android: Scaffold(
         body: body,
