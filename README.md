@@ -10,3 +10,5 @@
 <img src="https://img.shields.io/badge/-AgoraSDK-red" hspace="2" alt="">
 
 </div>
+
+To help use Agora in our app, we used the Agora community's Flutter Quickstart for Agora. https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart/blob/master/lib/src/pages/index.dart. We adapted this to fit our needs for this app, but used this as a basic base.
