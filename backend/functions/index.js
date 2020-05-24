@@ -7,6 +7,8 @@ const admin = require("firebase-admin");
 //  response.send("Hello from Firebase!");
 // });
 
+admin.initializeApp();
+
 exports.buySessionsForLater = functions.https.onRequest(
   async (request, response) => {
     if (request.body["path"] !== null && request.body["amount"] !== null) {
@@ -48,8 +50,10 @@ exports.buySessionsForLater = functions.https.onRequest(
 
 exports.notifyTherapist = functions.https.onRequest((request, response) => {
   let path = request.body["path"];
-  let connectionID = request.body["connectionID"];
+  let id = Date.now().toString();
   admin.firestore().doc(path).collection("requests").add({
-    connectionID: connectionID,
+    connectionID: id,
+    
   });
+  response.status(200).send(id);
 });

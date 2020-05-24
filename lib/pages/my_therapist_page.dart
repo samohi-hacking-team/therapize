@@ -70,7 +70,7 @@ class MyTherapistsPage extends StatelessWidget {
                             name: documentSnapshot.data['name'],
                             rating: documentSnapshot.data['rating'].toDouble(),
                             type: documentSnapshot.data['type'],
-                            path: documentSnapshot.data['path'],
+                                    path: documentSnapshot.reference.path,
                             header: documentSnapshot.data['header'],
                             description: documentSnapshot.data['description'],
                             imagePath: documentSnapshot.data['imagePath'],

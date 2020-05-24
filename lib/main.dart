@@ -5,6 +5,8 @@ import 'package:therapize/global/colors.dart';
 import 'package:therapize/pages/homepage.dart';
 import 'package:therapize/src/pages/index.dart';
 
+import 'pages/homepage.dart';
+
 void main() {
   runApp(MyApp());
 }

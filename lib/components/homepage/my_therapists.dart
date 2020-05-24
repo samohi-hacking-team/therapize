@@ -12,7 +12,6 @@ import 'package:therapize/models/therapist.dart';
 import 'package:therapize/pages/my_therapist_page.dart';
 
 import '../../models/therapist.dart';
-import '../../models/therapist.dart';
 
 class MyTherapists extends StatelessWidget {
   @override
