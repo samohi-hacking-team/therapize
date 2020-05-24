@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Therapist {
   final String path;
-  
+
   final String name;
 
   final String type;
@@ -18,11 +18,13 @@ class Therapist {
 
   final double rating;
 
+  final String description;
+
   Therapist({
     @required this.path,
     @required this.name,
     @required this.type,
     @required this.rating,
+    @required this.description,
   });
-  
 }
