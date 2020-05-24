@@ -110,7 +110,7 @@ class MyTherapists extends StatelessWidget {
                                           documentSnapshot.data['description'],
                                       imagePath:
                                           documentSnapshot.data['imagePath'],
-                                      price: null);
+                                      price: documentSnapshot.data['price']);
 
                                   return TherapistCard(
                                     therapist: therapist,
