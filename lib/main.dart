@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:therapize/components/platform_widgets/platform_app.dart';
 import 'package:therapize/global/colors.dart';
-import 'package:therapize/pages/homepage_router.dart';
+import 'package:therapize/pages/homepage.dart';
 import 'package:therapize/src/pages/index.dart';
 
 void main() {
@@ -15,8 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformApp(
       title: "Therapize",
-      home: IndexPage(),
-      // HomePageRouter(),
+      home: HomePage(),
       materialLightTheme: ThemeData(
         primaryColor: AppTheme.baseColor,
       ),
