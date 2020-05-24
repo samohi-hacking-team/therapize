@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "721890718303",
+    "firebase_url": "https://therapistconnector.firebaseio.com",
+    "project_id": "therapistconnector",
+    "storage_bucket": "therapistconnector.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721890718303:android:f001ee74ed35263cb6a1ea",
+        "android_client_info": {
+          "package_name": "com.cheezBit.therapize"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721890718303-rej988bvqgrd9il1ik4a1u606eeionn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXAxprZUnm4gt0tbmRswVxICyXwB8U87s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721890718303-rej988bvqgrd9il1ik4a1u606eeionn5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
