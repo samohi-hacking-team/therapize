@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:therapize/components/platform_widgets/platform_app.dart';
 import 'package:therapize/global/colors.dart';
 import 'package:therapize/pages/homepage.dart';
-import 'package:therapize/src/pages/index.dart';
 
 import 'pages/homepage.dart';
 
