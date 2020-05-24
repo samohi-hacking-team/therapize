@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:therapize/components/platform_widgets/platform_page_route.dart';
 import 'package:therapize/components/themed_text.dart';
 import 'package:therapize/components/therapist_card.dart';
 import 'package:therapize/models/therapist.dart';
+import 'package:therapize/pages/my_therapist_page.dart';
 
 class MyTherapists extends StatelessWidget {
   @override
@@ -28,9 +28,9 @@ class MyTherapists extends StatelessWidget {
               Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  // onTap: () =>Navigator.of(context).push(
-                  //   platformPageRoute()
-                  // ),
+                  onTap: () =>Navigator.of(context).push(
+                    platformPageRoute(MyTherapistsPage())
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ThemedText(
@@ -80,15 +80,14 @@ Extras:
                 ),
                 TherapistCard(
                   therapist: Therapist(
-                    path: "aasfasf",
-                    name: "Jessica Golden",
-                    rating: 5.0,
-                    type: "Humanistic Therapist",
-                    imagePath: "Sgsdg",
-                    description: """Hi, I am Jessica.
+                      path: "aasfasf",
+                      name: "Jessica Golden",
+                      rating: 5.0,
+                      type: "Humanistic Therapist",
+                      imagePath: "Sgsdg",
+                      description: """Hi, I am Jessica.
                     
-My hobbies define me. They have evolved over the years, but I have always had an intense passion for math in particular. My older brother used to "tutor" me in math when I was in preschool and it stuck. In school, I am known as the math nerd that finds joy in tutoring friends. Additionally, I am one of the captains of both the Samohi Mathletes and Science Olympiad teams which has given me so many amazing leadership opportunities. In my free time, I like to solve puzzles and I am excessively obsessed with cryptograms in particular. Furthermore, I am a passionate percussionist currently enrolled in three music classes. Last but not least, I have been working diligently on improving my skill set in graphic design."""
-                  ),
+My hobbies define me. They have evolved over the years, but I have always had an intense passion for math in particular. My older brother used to "tutor" me in math when I was in preschool and it stuck. In school, I am known as the math nerd that finds joy in tutoring friends. Additionally, I am one of the captains of both the Samohi Mathletes and Science Olympiad teams which has given me so many amazing leadership opportunities. In my free time, I like to solve puzzles and I am excessively obsessed with cryptograms in particular. Furthermore, I am a passionate percussionist currently enrolled in three music classes. Last but not least, I have been working diligently on improving my skill set in graphic design."""),
                 ),
                 TherapistCard(
                   therapist: Therapist(
@@ -96,6 +95,8 @@ My hobbies define me. They have evolved over the years, but I have always had an
                     name: "Jason Telanoff",
                     rating: 2.0,
                     type: "Bad Therapist",
+                    description: "",
+                    imagePath: ""
                   ),
                 )
               ],

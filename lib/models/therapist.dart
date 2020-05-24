@@ -22,6 +22,8 @@ class Therapist {
 
   final String imagePath;
 
+  final double price;
+
   Therapist({
     @required this.path,
     @required this.name,
@@ -29,5 +31,6 @@ class Therapist {
     @required this.rating,
     @required this.description,
     @required this.imagePath,
+    @required this.price,
   });
 }
