@@ -101,7 +101,7 @@ class _TherapistPageState extends State<TherapistPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ThemedText(
-                      "Amount",
+                      "Hours",
                       textType: TextType.header,
                     ),
                     Container(
