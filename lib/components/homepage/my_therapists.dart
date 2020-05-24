@@ -112,6 +112,7 @@ class MyTherapists extends StatelessWidget {
                                         documentSnapshot.data['imagePath'],
                                     rate: documentSnapshot.data['rate']
                                         .toDouble(),
+                                    available: documentSnapshot.data['available']
                                   );
 
                                   return documents.length == 1
