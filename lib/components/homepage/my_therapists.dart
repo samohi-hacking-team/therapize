@@ -9,7 +9,6 @@ import 'package:therapize/models/therapist.dart';
 import 'package:therapize/pages/my_therapist_page.dart';
 
 import '../../models/therapist.dart';
-import '../../models/therapist.dart';
 
 class MyTherapists extends StatelessWidget {
   @override
@@ -112,7 +111,7 @@ class MyTherapists extends StatelessWidget {
                                         documentSnapshot.data['imagePath'],
                                     rate: documentSnapshot.data['rate']
                                         .toDouble(),
-                                      
+                                    available: documentSnapshot.data['available']
                                   );
 
                                   return documents.length == 1

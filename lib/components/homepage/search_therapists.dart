@@ -76,6 +76,7 @@ class SearchTherapists extends StatelessWidget {
                         rate: document['rate'].toDouble(),
                         rating: document['rating'].toDouble(),
                         type: document['type'],
+                        available: document['available'],
                       );
 
                       return Container(
