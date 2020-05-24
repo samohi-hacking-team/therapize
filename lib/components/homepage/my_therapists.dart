@@ -67,9 +67,6 @@ class MyTherapists extends StatelessWidget {
                   ],
                 );
               } else {
-                print(s.error);
-                print(s.hasError);
-                print('~~~~~~~~~~~~~~~~');
                 QuerySnapshot snapshot = s.data;
                 List documents = snapshot.documents;
 
