@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
 import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
 import 'package:therapize/components/platform_widgets/platform_text_field.dart';
+import 'package:therapize/components/therapist_card.dart';
+import 'package:therapize/models/therapist.dart';
 
 class SearchTherapistsPage extends StatefulWidget {
   @override
@@ -35,6 +38,53 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
               },
               labelText: 'Search',
               hintText: 'Search Therapists',
+            ),
+            FutureBuilder(
+              future:
+                  Firestore.instance.collection('therapists').getDocuments(),
+              builder: (c, s) {
+                if (s.connectionState != ConnectionState.done) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                      Divider(),
+                      Text(
+                        "Loading",
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  );
+                } else {
+                  QuerySnapshot snapshot = s.data;
+                  List documents = snapshot.documents;
+
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height - 180,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.only(top: 30),
+                        scrollDirection: Axis.vertical,
+                        itemCount: documents.length,
+                        itemBuilder: (c, i) {
+                          DocumentSnapshot document = documents[i];
+                          Therapist therapist = new Therapist(
+                              header: document['header'],
+                              description: document['description'],
+                              name: document['name'],
+                              imagePath: document['imagePath'],
+                              path: document['path'],
+                              price: document['price'],
+                              rating: document['rating'].toDouble(),
+                              type: document['type']);
+
+                          return TherapistCard(
+                            therapist: therapist,
+                          );
+                        }),
+                  );
+                }
+              },
             ),
           ],
         ),
