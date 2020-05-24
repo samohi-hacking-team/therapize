@@ -84,6 +84,10 @@ Extras:
                     name: "Jessica Golden",
                     rating: 5.0,
                     type: "Humanistic Therapist",
+                    imagePath: "Sgsdg",
+                    description: """Hi, I am Jessica.
+                    
+My hobbies define me. They have evolved over the years, but I have always had an intense passion for math in particular. My older brother used to "tutor" me in math when I was in preschool and it stuck. In school, I am known as the math nerd that finds joy in tutoring friends. Additionally, I am one of the captains of both the Samohi Mathletes and Science Olympiad teams which has given me so many amazing leadership opportunities. In my free time, I like to solve puzzles and I am excessively obsessed with cryptograms in particular. Furthermore, I am a passionate percussionist currently enrolled in three music classes. Last but not least, I have been working diligently on improving my skill set in graphic design."""
                   ),
                 ),
                 TherapistCard(
