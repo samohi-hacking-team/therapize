@@ -170,6 +170,7 @@ class _TherapistPageState extends State<TherapistPage> {
                   child: ThemedText("Call now!"),
                   color: AppTheme.baseColor,
                   onPressed: () {
+                    print("PATHHH");
                     print(widget.therapist.path);
                     post(
                         "https://us-central1-therapistconnector.cloudfunctions.net/notifyTherapist",
@@ -182,7 +183,9 @@ class _TherapistPageState extends State<TherapistPage> {
                   },
                 ),
               ),
-              Container(height: 20),
+              Container(
+                height: 20,
+              ),
               Container(
                 width: MediaQuery.of(context).size.width - 40,
                 height: 60,
