@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:therapize/components/platform_widgets/platform_app_bar.dart';
 import 'package:therapize/components/platform_widgets/platform_scaffold.dart';
+import 'package:therapize/components/platform_widgets/platform_text_field.dart';
 
 class SearchTherapistsPage extends StatefulWidget {
   @override
@@ -8,12 +9,12 @@ class SearchTherapistsPage extends StatefulWidget {
 }
 
 class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
-  String output;
+  String searching;
 
   @override
   void initState() {
     super.initState();
-    output = "";
+    searching = "";
   }
 
   @override
@@ -26,16 +27,14 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Search',
-                hintText: 'Therapist Name',
-              ),
+            PlatformTextField(
               onChanged: (v) {
                 setState(() {
-                  output = v;
+                  searching = v;
                 });
               },
+              labelText: 'Search',
+              hintText: 'Search Therapists',
             ),
           ],
         ),
