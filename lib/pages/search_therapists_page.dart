@@ -125,7 +125,7 @@ class Search extends StatelessWidget {
                 rating: document['rating'].toDouble(),
                 type: document['type']);
 
-            return therapist.name.toLowerCase().contains(this.searchString)?TherapistCard(
+            return therapist.name.toLowerCase().contains(this.searchString.toLowerCase()) || therapist.type.toLowerCase().contains(this.searchString.toLowerCase())?TherapistCard(
               therapist: therapist,
             ):Container();
           }),
