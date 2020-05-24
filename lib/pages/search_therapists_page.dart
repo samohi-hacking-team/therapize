@@ -60,8 +60,7 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
                   QuerySnapshot snapshot = s.data;
                   List documents = snapshot.documents;
 
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height - 180,
+                  return Expanded(
                     child: ListView.builder(
                         padding: const EdgeInsets.only(top: 30),
                         scrollDirection: Axis.vertical,
@@ -74,7 +73,7 @@ class _SearchTherapistsPageState extends State<SearchTherapistsPage> {
                               name: document['name'],
                               imagePath: document['imagePath'],
                               path: document['path'],
-                              price: document['price'],
+                              rate: document['rate'],
                               rating: document['rating'].toDouble(),
                               type: document['type']);
 

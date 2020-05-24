@@ -7,7 +7,7 @@ import 'package:therapize/components/themed_text.dart';
 import 'package:therapize/components/therapist_card.dart';
 import 'package:therapize/models/therapist.dart';
 import 'package:therapize/pages/my_therapist_page.dart';
-import 'package:therapize/pages/other_therapists_page.dart';
+import 'package:therapize/pages/all_therapists_page.dart';
 
 import '../../models/therapist.dart';
 import '../../models/therapist.dart';
