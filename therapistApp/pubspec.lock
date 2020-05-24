@@ -74,17 +74,17 @@ packages:
   convert:
     dependency: transitive
     description:
-      name: convert
+      name: clock
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
-  crypto:
+    version: "1.0.1"
+  collection:
     dependency: transitive
     description:
-      name: crypto
+      name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "1.14.12"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -273,13 +273,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
-  xml:
-    dependency: transitive
-    description:
-      name: xml
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.6.1"
 sdks:
   dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.4 <2.0.0"
