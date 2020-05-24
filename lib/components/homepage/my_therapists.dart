@@ -7,6 +7,7 @@ import 'package:therapize/components/themed_text.dart';
 import 'package:therapize/components/therapist_card.dart';
 import 'package:therapize/models/therapist.dart';
 import 'package:therapize/pages/my_therapist_page.dart';
+import 'package:therapize/pages/other_therapists_page.dart';
 
 import '../../models/therapist.dart';
 import '../../models/therapist.dart';
@@ -143,7 +144,7 @@ class MyTherapists extends StatelessWidget {
                     type: MaterialType.transparency,
                     child: InkWell(
                       onTap: () => Navigator.of(context)
-                          .push(platformPageRoute(MyTherapistsPage())),
+                          .push(platformPageRoute(OtherTherapistsPage())),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ThemedText(
@@ -156,9 +157,8 @@ class MyTherapists extends StatelessWidget {
                 ],
               ),
               FutureBuilder<QuerySnapshot>(
-                future: Firestore.instance
-                    .collection('therapists')
-                    .getDocuments(),
+                future:
+                    Firestore.instance.collection('therapists').getDocuments(),
                 builder: (c, s) {
                   if (s.connectionState != ConnectionState.done) {
                     return Column(

@@ -39,52 +39,50 @@ class MyTherapistsPage extends StatelessWidget {
               QuerySnapshot snapshot = s.data;
               List documents = snapshot.documents;
 
-              return Container(
-                height: 130,
-                child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: documents.length,
-                    itemBuilder: (c, i) {
-                      return FutureBuilder<DocumentSnapshot>(
-                        future: Firestore.instance
-                            .collection('therapists')
-                            .document(documents[i].documentID)
-                            .get(),
-                        builder: (c, s) {
-                          if (s.connectionState != ConnectionState.done) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                CircularProgressIndicator(),
-                                Divider(),
-                                Text(
-                                  "Loading",
-                                  textAlign: TextAlign.center,
-                                )
-                              ],
-                            );
-                          } else {
-                            DocumentSnapshot documentSnapshot = s.data;
+              return ListView.builder(
+                  padding: const EdgeInsets.only(top: 30),
+                  scrollDirection: Axis.vertical,
+                  itemCount: documents.length,
+                  itemBuilder: (c, i) {
+                    return FutureBuilder<DocumentSnapshot>(
+                      future: Firestore.instance
+                          .collection('therapists')
+                          .document(documents[i].documentID)
+                          .get(),
+                      builder: (c, s) {
+                        if (s.connectionState != ConnectionState.done) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              CircularProgressIndicator(),
+                              Divider(),
+                              Text(
+                                "Loading",
+                                textAlign: TextAlign.center,
+                              )
+                            ],
+                          );
+                        } else {
+                          DocumentSnapshot documentSnapshot = s.data;
 
-                            Therapist therapist = new Therapist(
-                                name: documentSnapshot.data['name'],
-                                rating:
-                                    documentSnapshot.data['rating'].toDouble(),
-                                type: documentSnapshot.data['type'],
-                                path: documentSnapshot.data['path'],
-                                description: documentSnapshot.data['description'],
-                                imagePath: documentSnapshot.data['imagePath'],
-                                price: null);
+                          Therapist therapist = new Therapist(
+                              name: documentSnapshot.data['name'],
+                              rating:
+                                  documentSnapshot.data['rating'].toDouble(),
+                              type: documentSnapshot.data['type'],
+                              path: documentSnapshot.data['path'],
+                              description: documentSnapshot.data['description'],
+                              imagePath: documentSnapshot.data['imagePath'],
+                              price: null);
 
-                            return TherapistCard(
-                              therapist: therapist,
-                            );
-                          }
-                        },
-                      );
-                    }),
-              );
+                          return TherapistCard(
+                            therapist: therapist,
+                          );
+                        }
+                      },
+                    );
+                  });
             }
           },
         ),
