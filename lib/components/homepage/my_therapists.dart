@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:therapize/components/themed_text.dart';
 import 'package:therapize/models/therapist.dart';
 import 'package:therapize/pages/therapist_page.dart';
+
+import '../../models/therapist.dart';
+import '../../models/therapist.dart';
 
 class MyTherapists extends StatelessWidget {
   @override
@@ -39,36 +43,79 @@ class MyTherapists extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            height: 130,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                TherapistCard(
-                  therapist: Therapist(
-                      name: "Benjamin Swerdlow",
-                      rating: 4.2,
-                      type: "Existential Therapist",
-                      path: "sgsdgsg"),
-                ),
-                TherapistCard(
-                  therapist: Therapist(
-                    path: "aasfasf",
-                    name: "Jessica Golden",
-                    rating: 5.0,
-                    type: "Humanistic Therapist",
-                  ),
-                ),
-                TherapistCard(
-                  therapist: Therapist(
-                    path: "sgsdgdsg",
-                    name: "Jason Telanoff",
-                    rating: 2.0,
-                    type: "Bad Therapist",
-                  ),
-                )
-              ],
-            ),
+          FutureBuilder<QuerySnapshot>(
+            future: Firestore.instance
+                .collection('users')
+                .document('test')
+                .collection('myTherapists')
+                .getDocuments(),
+            builder: (c, s) {
+              if (s.connectionState != ConnectionState.done) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    CircularProgressIndicator(),
+                    Divider(),
+                    Text(
+                      "Loading",
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                );
+              } else {
+                print(s.error);
+                print(s.hasError);
+                print('~~~~~~~~~~~~~~~~');
+                QuerySnapshot snapshot = s.data;
+                List documents = snapshot.documents;
+
+                return Container(
+                  height: 130,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: documents.length,
+                      itemBuilder: (c, i) {
+                        return FutureBuilder<DocumentSnapshot>(
+                          future: Firestore.instance
+                              .collection('therapists')
+                              .document(documents[i].documentID)
+                              .get(),
+                          builder: (c, s) {
+                            if (s.connectionState != ConnectionState.done) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  CircularProgressIndicator(),
+                                  Divider(),
+                                  Text(
+                                    "Loading",
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              );
+                            } else {
+                              DocumentSnapshot documentSnapshot = s.data;
+
+                              Therapist therapist = new Therapist(
+                                  name: documentSnapshot.data['name'],
+                                  rating: documentSnapshot.data['rating'].toDouble(),
+                                  type: documentSnapshot.data['type'],
+                                  path: documentSnapshot.data['path'],
+                                  description:
+                                      documentSnapshot.data['description']);
+
+                              return TherapistCard(
+                                therapist: therapist,
+                              );
+                            }
+                          },
+                        );
+                      }),
+                );
+              }
+            },
           ),
         ],
       ),
@@ -159,7 +206,9 @@ class TherapistCard extends StatelessWidget {
           Navigator.of(context).push(
             Platform.isIOS
                 ? CupertinoPageRoute(
-                    builder: (c) => TherapistPage(this.therapist,))
+                    builder: (c) => TherapistPage(
+                          this.therapist,
+                        ))
                 : MaterialPageRoute(
                     builder: (c) => TherapistPage(this.therapist)),
           );
