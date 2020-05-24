@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <rect key="frame" x="82" y="-302" width="250" height="1500"/>
+                                <rect key="frame" x="82" y="73" width="250" height="750"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="zpZ-ga-mca"/>
                                 </constraints>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="1500" height="1500"/>
+        <image name="LaunchImage" width="750" height="750"/>
     </resources>
 </document>

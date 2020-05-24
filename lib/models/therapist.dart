@@ -20,11 +20,14 @@ class Therapist {
 
   final String description;
 
+  final String imagePath;
+
   Therapist({
     @required this.path,
     @required this.name,
     @required this.type,
     @required this.rating,
     @required this.description,
+    @required this.imagePath,
   });
 }

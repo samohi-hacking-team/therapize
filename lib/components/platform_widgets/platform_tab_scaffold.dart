@@ -20,8 +20,8 @@ class _PlatformTabScaffoldState extends State<PlatformTabScaffold> {
   void initState() {
     super.initState();
     index = 0;
-
   }
+
   @override
   Widget build(BuildContext context) {
     return PlatformWidget(
@@ -34,8 +34,11 @@ class _PlatformTabScaffoldState extends State<PlatformTabScaffold> {
       android: Scaffold(
         body: widget.tabBuilder(context, this.index),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: this.index,
+          selectedItemColor: AppTheme.baseColor,
+          unselectedItemColor: MediaQuery.of(context).platformBrightness==Brightness.light?Colors.grey[500]:Colors.grey[400],
           items: widget.navItems,
-          onTap: (index){
+          onTap: (index) {
             setState(() {
               this.index = index;
             });

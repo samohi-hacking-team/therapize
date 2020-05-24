@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:therapize/components/platform_widgets/platform_page_route.dart';
 import 'package:therapize/components/themed_text.dart';
+import 'package:therapize/components/therapist_card.dart';
 import 'package:therapize/models/therapist.dart';
-import 'package:therapize/pages/therapist_page.dart';
 
 class MyTherapists extends StatelessWidget {
   @override
@@ -27,7 +28,9 @@ class MyTherapists extends StatelessWidget {
               Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  onTap: () {},
+                  // onTap: () =>Navigator.of(context).push(
+                  //   platformPageRoute()
+                  // ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ThemedText(
@@ -46,10 +49,34 @@ class MyTherapists extends StatelessWidget {
               children: [
                 TherapistCard(
                   therapist: Therapist(
-                      name: "Benjamin Swerdlow",
-                      rating: 4.2,
-                      type: "Existential Therapist",
-                      path: "sgsdgsg"),
+                    name: "Benjamin Swerdlow",
+                    imagePath: "sm",
+                    description:
+                        """When I was a freshman in high school I accidentally found myself inside the City of Santa Monica's report database through a project with Hack for LA. Instead of reprimanding me, they offered me an internship...until they realized I was 15.
+
+TL;DR:
+- Highschool Student
+- Aspiring Developer
+- Mobile Development Experience
+- UX Experience
+- Self Motivated
+
+Mobile dev:
+I wrote my first Swift app that year too. Sophomore year (I'm still a sophomore) I switched to Flutter, Google's Mobile UI Framework. Since then I have published 4 Flutter apps, and I am working on 2 more in my free time. I contributed to The Orange Alliance, the data provider for FIRST Tech Challenge.
+Web dev:
+I've also contributed to the Yale Open Lab Climate Collaboration and was a part of the team that won the Community Choice Award and the Most Innovative Contribution Award. I am also working with K.I.C.K. to revamp their website.
+
+Qualifications:
+Though I may not have as much traditional experience as many other programmers, I am a fast learner, and I am self-motivated. I am self-taught in Flutter, and I am currently teaching myself ReactJS. I taught myself Python and Java in middle school. While I would like to say I am completely self-taught, I have taken Javascript, C, Python, and AWS classes at SMC and have earned an "Entry Level Programmer" certificate from the SMC Computer Science Department.
+
+Extras:
+- Experience with Node.js
+- Experience with Stripe Payment Processing
+- Experience with client-side networking """,
+                    rating: 4.2,
+                    type: "Existential Therapist",
+                    path: "sgsdgsg",
+                  ),
                 ),
                 TherapistCard(
                   therapist: Therapist(
@@ -71,99 +98,6 @@ class MyTherapists extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class TherapistCard extends StatelessWidget {
-  final Therapist therapist;
-
-  const TherapistCard({
-    this.therapist,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      child: FlatButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: MediaQuery.of(context).platformBrightness == Brightness.light
-            ? Colors.grey[100]
-            : Colors.grey[900],
-        padding: EdgeInsets.all(
-          16,
-        ),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    height: 80,
-                    color: Colors.white,
-                    width: 80,
-                    child: FlutterLogo(),
-                  ),
-                ),
-                Container(
-                  width: 10,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ThemedText(
-                      this.therapist.name,
-                      textType: TextType.header,
-                      textStyle: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 20,
-                      ),
-                    ),
-                    ThemedText(
-                      this.therapist.type,
-                      textType: TextType.subtitle,
-                      textStyle: TextStyle(
-                        //fontSize: 17,
-                        color: MediaQuery.of(context).platformBrightness ==
-                                Brightness.light
-                            ? Colors.grey[600]
-                            : Colors.grey[400],
-                      ),
-                    ),
-                    Container(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: CupertinoColors.systemYellow,
-                        ),
-                        ThemedText(
-                          this.therapist.rating.toString(),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-        onPressed: () {
-          Navigator.of(context).push(
-            Platform.isIOS
-                ? CupertinoPageRoute(
-                    builder: (c) => TherapistPage(this.therapist,))
-                : MaterialPageRoute(
-                    builder: (c) => TherapistPage(this.therapist)),
-          );
-        },
       ),
     );
   }
