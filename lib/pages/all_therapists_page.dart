@@ -37,17 +37,17 @@ class OtherTherapistsPage extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: documents.length,
                 itemBuilder: (c, i) {
-                  DocumentSnapshot document = documents[i];
-                  Therapist therapist = new Therapist(
-                    header: document['header'],
-                    description: document['description'],
-                    name: document['name'],
-                    imagePath: document['imagePath'],
-                                    path: document.reference.path,
-                    rate: document['rate'].toDouble(),
-                    rating: document['rating'].toDouble(),
-                    type: document['type'],
-                  );
+                  DocumentSnapshot documentSnapshot = documents[i];
+                  Therapist therapist = Therapist(
+                      name: documentSnapshot.data['name'],
+                      rating: documentSnapshot.data['rating'].toDouble(),
+                      type: documentSnapshot.data['type'],
+                      path: documentSnapshot.reference.path,
+                      header: documentSnapshot.data['header'],
+                      description: documentSnapshot.data['description'],
+                      imagePath: documentSnapshot.data['imagePath'],
+                      rate: documentSnapshot.data['rate'].toDouble(),
+                      available: documentSnapshot.data['available']);
 
                   return TherapistCard(
                     therapist: therapist,
