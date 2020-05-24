@@ -7,7 +7,6 @@ import 'package:therapize/components/themed_text.dart';
 import 'package:therapize/components/therapist_card.dart';
 import 'package:therapize/models/therapist.dart';
 import 'package:therapize/pages/my_therapist_page.dart';
-import 'package:therapize/pages/all_therapists_page.dart';
 
 import '../../models/therapist.dart';
 import '../../models/therapist.dart';
@@ -111,12 +110,20 @@ class MyTherapists extends StatelessWidget {
                                         documentSnapshot.data['description'],
                                     imagePath:
                                         documentSnapshot.data['imagePath'],
-                                    rate: documentSnapshot.data['rate'].toDouble(),
+                                    rate: documentSnapshot.data['rate']
+                                        .toDouble(),
                                   );
 
-                                  return TherapistCard(
-                                    therapist: therapist,
-                                  );
+                                  return documents.length == 1
+                                      ? SizedBox(
+                                        width: MediaQuery.of(context).size.width - 16,
+                                        child: TherapistCard(
+                                            therapist: therapist,
+                                          ),
+                                      )
+                                      : TherapistCard(
+                                          therapist: therapist,
+                                        );
                                 }
                               },
                             );
