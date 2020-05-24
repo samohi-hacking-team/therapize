@@ -26,6 +26,14 @@ class HomePageRouter extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(
+            Icons.calendar_today,
+          ),
+          title: Text(
+            "Sessions",
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
             Icons.settings,
           ),
           title: Text(
@@ -42,6 +50,10 @@ class HomePageRouter extends StatelessWidget {
               color: Colors.blue,
             );
           case 2:
+            return Container(
+              color: Colors.orange,
+            );
+          case 3:
             return Container(
               color: Colors.orange,
             );
