@@ -9,8 +9,8 @@ import '../components/platform_widgets/platform_scaffold.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-          child: CustomScrollView(
+    return Scaffold(
+          body: CustomScrollView(
         slivers: [
           PlatformSliverAppBar(
             title: "Therapize",
