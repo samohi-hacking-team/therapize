@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:therapize/components/themed_text.dart';
+import 'package:therapize/models/therapist.dart';
+import 'package:therapize/pages/therapist_page.dart';
 
 class MyTherapists extends StatelessWidget {
   @override
@@ -41,28 +45,27 @@ class MyTherapists extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 TherapistCard(
-                  therapistName: "Benjamin Swerdlow",
-                  rating: '4.2',
-                  type: "Existential Therapist",
-                  /*
-                    Client-Centered Therapist.                    
-                    Existential Therapist.
-                    Gestalt Therapist.
-                    Humanistic Therapist.
-                    Interpersonal Therapist.
-                    Rational Emotive Behavioral Therapist.
-                    Relational Therapist.
-                  */
+                  therapist: Therapist(
+                      name: "Benjamin Swerdlow",
+                      rating: 4.2,
+                      type: "Existential Therapist",
+                      path: "sgsdgsg"),
                 ),
                 TherapistCard(
-                  therapistName: "Jessica Golden",
-                  rating: '5.0',
-                  type: "Humanistic Therapist",
+                  therapist: Therapist(
+                    path: "aasfasf",
+                    name: "Jessica Golden",
+                    rating: 5.0,
+                    type: "Humanistic Therapist",
+                  ),
                 ),
                 TherapistCard(
-                  therapistName: "Jason Telanoff",
-                  rating: '2.0',
-                  type: "Bad Therapist",
+                  therapist: Therapist(
+                    path: "sgsdgdsg",
+                    name: "Jason Telanoff",
+                    rating: 2.0,
+                    type: "Bad Therapist",
+                  ),
                 )
               ],
             ),
@@ -74,18 +77,11 @@ class MyTherapists extends StatelessWidget {
 }
 
 class TherapistCard extends StatelessWidget {
-  final String therapistName;
-  final String type;
-  final String rating;
-  final bool favorite;
+  final Therapist therapist;
 
   const TherapistCard({
-    Key key,
-    @required this.therapistName,
-    @required this.type,
-    @required this.rating,
-    this.favorite = false,
-  }) : super(key: key);
+    this.therapist,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +92,9 @@ class TherapistCard extends StatelessWidget {
         color: MediaQuery.of(context).platformBrightness == Brightness.light
             ? Colors.grey[100]
             : Colors.grey[900],
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(
+          16,
+        ),
         child: Column(
           children: [
             Row(
@@ -119,7 +117,7 @@ class TherapistCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ThemedText(
-                      this.therapistName,
+                      this.therapist.name,
                       textType: TextType.header,
                       textStyle: TextStyle(
                         fontWeight: FontWeight.w300,
@@ -127,7 +125,7 @@ class TherapistCard extends StatelessWidget {
                       ),
                     ),
                     ThemedText(
-                      this.type,
+                      this.therapist.type,
                       textType: TextType.subtitle,
                       textStyle: TextStyle(
                         //fontSize: 17,
@@ -147,7 +145,7 @@ class TherapistCard extends StatelessWidget {
                           color: CupertinoColors.systemYellow,
                         ),
                         ThemedText(
-                          this.rating,
+                          this.therapist.rating.toString(),
                         ),
                       ],
                     ),
@@ -157,7 +155,15 @@ class TherapistCard extends StatelessWidget {
             ),
           ],
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            Platform.isIOS
+                ? CupertinoPageRoute(
+                    builder: (c) => TherapistPage(this.therapist,))
+                : MaterialPageRoute(
+                    builder: (c) => TherapistPage(this.therapist)),
+          );
+        },
       ),
     );
   }

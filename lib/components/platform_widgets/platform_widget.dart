@@ -13,7 +13,6 @@ class PlatformWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     if (Platform.isIOS && this.iOS != null) {
       return this.iOS;
     }else if(this.android != null) {
@@ -22,4 +21,6 @@ class PlatformWidget extends StatelessWidget {
       return Container();
     }
   }
+
+  
 }

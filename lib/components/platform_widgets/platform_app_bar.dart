@@ -9,19 +9,20 @@ class PlatformAppBar extends PlatformWidget {
   PlatformAppBar({
     @required this.title,
     this.action,
-  }) : super();
-
-  @override
-  Widget build(BuildContext context) {
-    return PlatformWidget(
-      iOS: CupertinoNavigationBar(
-        middle: Text(this.title),
-        trailing: this.action,
-      ),
-      android: AppBar(
-        title: Text(this.title),
-        actions: [this.action ?? Container()],
-      ),
-    );
-  }
+  }) : super(
+          iOS: CupertinoNavigationBar(
+            middle: Text(
+              title,
+            ),
+            trailing: action,
+          ),
+          android: AppBar(
+            title: Text(
+              title,
+            ),
+            actions: [
+              action ?? Container(),
+            ],
+          ),
+        );
 }
